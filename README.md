@@ -17,8 +17,6 @@ is creates an working directore ~/.driver
 5. Generates the vulkan icd json
 6. Print GPU Info hopefully with the selected Driver, haha
 
-Use `./convert.sh -c` to clean up.
-
 The driver blobs (like 805.zip) are from: https://github.com/K11MCH1/AdrenoToolsDrivers/releases/
 The goal is to be able to use all drivers from there.
 
