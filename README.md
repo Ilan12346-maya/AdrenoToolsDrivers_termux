@@ -8,6 +8,8 @@ This project provides a workflow to use proprietary Adreno Vulkan driver blobs i
 ./convert.sh 805.zip
 ```
 
+is creates an working directore ~/.driver 
+
 1. Unpacks the provided driver ZIP file
 2. Locates the primary Vulkan shared object
 3. generates a wrapper to map standard Vulkan C symbols
