@@ -4,11 +4,14 @@ BASE_DIR="$HOME/.driver"
 EXTRACT_DIR="$BASE_DIR/driver_files"
 LAYER_DIR="$BASE_DIR/layer"
 WSI_SRC="$SD/vulkan-wsi-layer"
+IMPLICIT_DIR="$HOME/.local/share/vulkan/implicit_layer.d"
 
 # Clean
 if [[ "$1" == "-c" ]]; then
+    echo "cleaning"
     rm -rf "$BASE_DIR"
-    echo "clean"
+    rm -f "$IMPLICIT_DIR/VkLayer_window_system_integration.json"
+    echo "yeah"
     exit 0
 fi
 
@@ -18,6 +21,7 @@ if [[ -z "$1" ]]; then
 fi
 
 mkdir -p "$LAYER_DIR"
+mkdir -p "$IMPLICIT_DIR"
 rm -rf "$EXTRACT_DIR"
 ZIP_FILE=$(realpath "$1")
 
@@ -27,7 +31,9 @@ unzip -q "$ZIP_FILE" -d "$EXTRACT_DIR"
 echo "building layer"
 cd "$WSI_SRC/build" && ninja > /dev/null 2>&1
 cp libVkLayer_window_system_integration.so VkLayer_window_system_integration.json "$LAYER_DIR/"
-sed -i "s|/data/data/com.termux/files/home/driver/vulkan-805/layer|$LAYER_DIR|g" "$LAYER_DIR/VkLayer_window_system_integration.json"
+sed -i "s|\"./libVkLayer_window_system_integration.so\"|\"$LAYER_DIR/libVkLayer_window_system_integration.so\"|g" "$LAYER_DIR/VkLayer_window_system_integration.json"
+sed -i "s|\"api_version\": \"1.3.216\"|\"api_version\": \"1.4.303\"|g" "$LAYER_DIR/VkLayer_window_system_integration.json"
+ln -sf "$LAYER_DIR/VkLayer_window_system_integration.json" "$IMPLICIT_DIR/"
 cd "$SD"
 
 DRIVER_SO=$(find "$EXTRACT_DIR" -name "vulkan.*.so" | head -n 1)

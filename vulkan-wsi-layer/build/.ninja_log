@@ -53,3 +53,17 @@
 4985	6566	1771013132442590944	CMakeFiles/VkLayer_window_system_integration.dir/wsi/synchronization.cpp.o	b2234035669c7e01
 5191	6753	1771013132650590944	CMakeFiles/VkLayer_window_system_integration.dir/wsi/wsi_factory.cpp.o	cb12178dedc25b7b
 6753	6942	1771013134210590943	libVkLayer_window_system_integration.so	9488ac7fae7cc1b
+20	60	1771018341998588957	CMakeFiles/manifest_json	a7b6ffb66bf97a87
+20	60	1771018341998588957	/data/data/com.termux/files/home/driver/vulkan-wsi-layer/build/CMakeFiles/manifest_json	a7b6ffb66bf97a87
+6	47	1771019796702588402	CMakeFiles/manifest_json	a7b6ffb66bf97a87
+6	47	1771019796702588402	/data/data/com.termux/files/home/driver/vulkan-wsi-layer/build/CMakeFiles/manifest_json	a7b6ffb66bf97a87
+9	67	1771019908446588359	CMakeFiles/manifest_json	a7b6ffb66bf97a87
+9	67	1771019908446588359	/data/data/com.termux/files/home/driver/vulkan-wsi-layer/build/CMakeFiles/manifest_json	a7b6ffb66bf97a87
+8	58	1771020043670588307	CMakeFiles/manifest_json	a7b6ffb66bf97a87
+8	58	1771020043670588307	/data/data/com.termux/files/home/driver/vulkan-wsi-layer/build/CMakeFiles/manifest_json	a7b6ffb66bf97a87
+6	47	1771025345842586285	CMakeFiles/manifest_json	a7b6ffb66bf97a87
+6	47	1771025345842586285	/data/data/com.termux/files/home/driver/vulkan-wsi-layer/build/CMakeFiles/manifest_json	a7b6ffb66bf97a87
+5	74	1771025768962586123	CMakeFiles/manifest_json	a7b6ffb66bf97a87
+5	74	1771025768962586123	/data/data/com.termux/files/home/driver/vulkan-wsi-layer/build/CMakeFiles/manifest_json	a7b6ffb66bf97a87
+21	59	1771026203454585958	CMakeFiles/manifest_json	a7b6ffb66bf97a87
+21	59	1771026203454585958	/data/data/com.termux/files/home/driver/vulkan-wsi-layer/build/CMakeFiles/manifest_json	a7b6ffb66bf97a87
