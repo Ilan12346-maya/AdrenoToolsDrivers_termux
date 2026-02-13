@@ -2,6 +2,11 @@
 
 This project provides a workflow to use proprietary Adreno Vulkan driver blobs in termux
 
+### Dependencies
+```bash
+pkg install clang cmake ninja vulkan-headers vulkan-tools libxcb libx11 xorgproto
+```
+
 ### convert.sh
 
 ```bash

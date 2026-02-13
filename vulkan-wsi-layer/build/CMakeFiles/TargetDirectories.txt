@@ -1,0 +1,10 @@
+/data/data/com.termux/files/home/driver/vulkan-wsi-layer/build/CMakeFiles/wsi_headless.dir
+/data/data/com.termux/files/home/driver/vulkan-wsi-layer/build/CMakeFiles/wsi_x11.dir
+/data/data/com.termux/files/home/driver/vulkan-wsi-layer/build/CMakeFiles/VkLayer_window_system_integration.dir
+/data/data/com.termux/files/home/driver/vulkan-wsi-layer/build/CMakeFiles/manifest_json.dir
+/data/data/com.termux/files/home/driver/vulkan-wsi-layer/build/CMakeFiles/edit_cache.dir
+/data/data/com.termux/files/home/driver/vulkan-wsi-layer/build/CMakeFiles/rebuild_cache.dir
+/data/data/com.termux/files/home/driver/vulkan-wsi-layer/build/CMakeFiles/list_install_components.dir
+/data/data/com.termux/files/home/driver/vulkan-wsi-layer/build/CMakeFiles/install.dir
+/data/data/com.termux/files/home/driver/vulkan-wsi-layer/build/CMakeFiles/install/local.dir
+/data/data/com.termux/files/home/driver/vulkan-wsi-layer/build/CMakeFiles/install/strip.dir

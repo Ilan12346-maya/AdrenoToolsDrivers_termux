@@ -2,8 +2,10 @@
 SD="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BASE_DIR="$HOME/.driver"
 EXTRACT_DIR="$BASE_DIR/driver_files"
-LAYER_SRC="$(realpath "$SD/../vulkan-805/layer")"
+LAYER_DIR="$BASE_DIR/layer"
+WSI_SRC="$SD/vulkan-wsi-layer"
 
+# Clean
 if [[ "$1" == "-c" ]]; then
     rm -rf "$BASE_DIR"
     echo "clean"
@@ -15,19 +17,27 @@ if [[ -z "$1" ]]; then
     exit 1
 fi
 
-mkdir -p "$BASE_DIR"
-rm -rf "$BASE_DIR"/*
+mkdir -p "$LAYER_DIR"
+rm -rf "$EXTRACT_DIR"
 ZIP_FILE=$(realpath "$1")
 
-echo "unpacking"
+echo "Extracting"
 unzip -q "$ZIP_FILE" -d "$EXTRACT_DIR"
+
+echo "building layer"
+cd "$WSI_SRC/build" && ninja > /dev/null 2>&1
+cp libVkLayer_window_system_integration.so VkLayer_window_system_integration.json "$LAYER_DIR/"
+sed -i "s|/data/data/com.termux/files/home/driver/vulkan-805/layer|$LAYER_DIR|g" "$LAYER_DIR/VkLayer_window_system_integration.json"
+cd "$SD"
 
 DRIVER_SO=$(find "$EXTRACT_DIR" -name "vulkan.*.so" | head -n 1)
 if [[ -z "$DRIVER_SO" ]]; then
     echo "err"
     exit 1
 fi
+echo "Driver: $DRIVER_SO"
 
+echo "make wrapper"
 cat <<EOF > "$BASE_DIR/wrapper.c"
 #include <stdio.h>
 #include <stdlib.h>
@@ -50,16 +60,22 @@ int vkEnumerateDeviceExtensionProperties(void* physicalDevice, const char* pLaye
 int vkCreateInstance(const void* pCreateInfo, const void* pAllocator, void* pInstance) { load_driver(); if (!handle) return -1; int (*f)(const void*, const void*, void*) = (int (*)(const void*, const void*, void*))dlsym(handle, M_CREATE_INST); return f ? f(pCreateInfo, pAllocator, pInstance) : -1; }
 EOF
 
-echo "compile"
 clang -shared -fPIC "$BASE_DIR/wrapper.c" -o "$BASE_DIR/libvulkan_wrapper.so" -ldl
 
+echo "make ICD JSON..."
 cat <<EOF > "$BASE_DIR/driver_icd.json"
-{"file_format_version": "1.0.0", "ICD": {"library_path": "$BASE_DIR/libvulkan_wrapper.so", "api_version": "1.4.303"}}
+{
+    "file_format_version": "1.0.0",
+    "ICD": {
+        "library_path": "$BASE_DIR/libvulkan_wrapper.so",
+        "api_version": "1.4.303"
+    }
+}
 EOF
 
 echo "Vulkan Info"
 env VK_ICD_FILENAMES="$BASE_DIR/driver_icd.json" \
-    VK_LAYER_PATH="$LAYER_SRC" \
+    VK_LAYER_PATH="$LAYER_DIR" \
     VK_INSTANCE_LAYERS="VK_LAYER_window_system_integration" \
     LD_LIBRARY_PATH="$EXTRACT_DIR:/vendor/lib64:/system/lib64:$LD_LIBRARY_PATH" \
     vulkaninfo 2>/dev/null | grep -A 40 "Device Properties" | grep -iE "deviceName|driverVersion" | sed 's/^[[:space:]]*//'

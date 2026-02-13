@@ -1,0 +1,20 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+
+minimum_pre_commit_version: 2.9.0
+
+repos:
+    - repo: https://github.com/pre-commit/mirrors-clang-format
+      rev: v14.0.0
+      hooks:
+          - id: clang-format
+            types_or: [c, c++]
+
+    - repo: local
+      hooks:
+          - id: copyright-check
+            name: copyright-check
+            description: Checks for a valid copyright header
+            entry: check_copyright.py
+            language: script
+            types_or: [c, c++]
