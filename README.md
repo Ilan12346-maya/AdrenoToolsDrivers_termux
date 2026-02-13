@@ -5,6 +5,7 @@ This project provides a workflow to use proprietary Adreno Vulkan driver blobs i
 ### convert.sh
 
 ```bash
+pkg install unzip clang vulkan-tools
 ./convert.sh 805.zip
 ```
 
