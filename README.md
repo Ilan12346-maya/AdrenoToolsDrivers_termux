@@ -23,3 +23,6 @@ The goal is to be able to use all drivers from there.
 by now its hardcoded for 805.zip will make it Universal
 
 Redmagic 8s pro, sd8gen2 adreno 740
+
+![Comparison system driver vs newer 805 driver](screenshot.jpg)
+*Comparison system driver vs newer 805 driver*
