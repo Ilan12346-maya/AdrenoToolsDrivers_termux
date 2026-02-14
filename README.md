@@ -51,7 +51,7 @@ this may break turnip driver installs but after "convert.sh -c" should just work
 use at your own risk, iam just trying
 
 will make an Performance chart in some time, 
-Redmagic 8s pro, sd8gen2 adreno 740 over here, so i can only confirm 8gen2 works with a740
+Redmagic 8s pro, sd8gen2 adreno 740 over here, so i can only confirm this SoC now
 
 
 ![Comparison system driver vs newer 805 driver](screenshot.jpg)
