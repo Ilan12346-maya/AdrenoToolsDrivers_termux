@@ -1,7 +1,0 @@
-{
-	"InstallScripts" : 
-	[
-		"/data/data/com.termux/files/home/driver/vulkan-wsi-layer/build/cmake_install.cmake"
-	],
-	"Parallel" : false
-}
