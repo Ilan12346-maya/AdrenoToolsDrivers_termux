@@ -1,1 +1,15 @@
+# Build artifacts
+vulkan-wsi-layer/build/*
+!vulkan-wsi-layer/build/.gitkeep
 
+# Logs
+*.log
+.ninja_log
+
+# Driver blobs and extracted files
+*.zip
+extracted_driver/
+
+# Temporary and system files
+*.swp
+.DS_Store

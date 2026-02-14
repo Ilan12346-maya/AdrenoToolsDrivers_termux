@@ -11,6 +11,7 @@ if [[ "$1" == "-c" ]]; then
     echo "cleaning"
     rm -rf "$BASE_DIR"
     rm -f "$IMPLICIT_DIR/VkLayer_window_system_integration.json"
+    rm -rf "$WSI_SRC/build/"*
     echo "yeah"
     exit 0
 fi
