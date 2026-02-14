@@ -15,7 +15,6 @@ export GALLIUM_DRIVER=zink
 
 echo "--- GPU Context ---"
 vulkaninfo 2>/dev/null | grep -iE "deviceName|driverVersion" | head -n 2 | sed 's/^[[:space:]]*//'
-echo "OpenGL Renderer: Zink (Vulkan-to-OpenGL)"
 echo "-------------------"
 
 if [[ -z "$1" ]]; then
