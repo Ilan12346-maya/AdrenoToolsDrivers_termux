@@ -4,7 +4,7 @@ EXTRACT_DIR="$BASE_DIR/driver_files"
 LAYER_DIR="$BASE_DIR/layer"
 
 if [[ ! -f "$BASE_DIR/driver_icd.json" ]]; then
-    echo "err: convert driver first"
+    echo "err: install driver first"
     exit 1
 fi
 
@@ -18,7 +18,7 @@ vulkaninfo 2>/dev/null | grep -iE "deviceName|driverVersion" | head -n 2 | sed '
 echo "-------------------"
 
 if [[ -z "$1" ]]; then
-    echo "Usage it like: ./test_gpu.sh vkmark"
+    echo "Usage: ./test_driver.sh <app_name>"
     exit 0
 fi
 
