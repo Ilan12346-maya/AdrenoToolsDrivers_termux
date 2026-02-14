@@ -1,6 +1,6 @@
 # AdrenoToolsDrivers_termux
 
-This project is an try to use proprietary Adreno Vulkan driver blobs in termux
+This project is an poc to use proprietary Adreno Vulkan driver blobs in termux
 like libadrenotools for other apps
 
 ### Dependencies
