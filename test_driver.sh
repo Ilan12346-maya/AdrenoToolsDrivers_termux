@@ -18,7 +18,7 @@ vulkaninfo 2>/dev/null | grep -iE "deviceName|driverVersion" | head -n 2 | sed '
 echo "-------------------"
 
 if [[ -z "$1" ]]; then
-    echo "Usage: ./test_gpu.sh <app_name>"
+    echo "Usage it like: ./test_gpu.sh vkmark"
     exit 0
 fi
 
