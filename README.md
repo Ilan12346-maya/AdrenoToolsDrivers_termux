@@ -9,7 +9,8 @@ like libadrenotools for other apps like ppsspp or gamehb
 ```bash
 pkg install clang python unzip binutils vulkan-headers vulkan-tools vulkan-loader-android vulkan-wrapper-android mesa
 ```
-*Note: `vulkan-loader-android` and `vulkan-wrapper-android` are used for loading the driver....  and the mesa WSI layer
+*Note: 
+`vulkan-loader-android` and `vulkan-wrapper-android` are used for loading the driver....  and the mesa WSI layer
 `mesa` is a dependency for Zink vulkan to openGL layer 
 
 #### Optional (for testing):
