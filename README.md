@@ -7,8 +7,16 @@ like libadrenotools for other apps like ppsspp or gamehb
 
 ### Dependencies
 ```bash
-pkg install clang cmake ninja vulkan-headers vulkan-tools libxcb libx11 xorgproto
+pkg install clang python unzip binutils vulkan-headers vulkan-tools vulkan-loader-android vulkan-wrapper-android mesa
 ```
+*Note: `vulkan-loader-android` and `vulkan-wrapper-android` are used for loading the driver....  and the mesa WSI layer
+`mesa` is a dependency for Zink vulkan to openGL layer 
+
+#### Optional (for testing):
+```bash
+pkg install vkmark
+```
+*Use `vkmark` to test performance and compare drivers.*
 
 ### install.sh
 
