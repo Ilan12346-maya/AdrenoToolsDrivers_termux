@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <dlfcn.h>
+
+#define VK_USE_PLATFORM_ANDROID_KHR 1
+#define VK_NO_PROTOTYPES
+#include <vulkan/vulkan.h>
+#include <vulkan/vulkan_android.h>
+
+typedef struct AHardwareBuffer AHardwareBuffer;
+typedef VkFlags VkSwapchainImageUsageFlagsANDROID;
+
+#define REAL_DRIVER "%%REAL_DRIVER_PATH%%"
+
+static void *handle = NULL;
+
+static void load_driver() {
+    if (handle) return;
+    handle = dlopen(REAL_DRIVER, RTLD_NOW | RTLD_GLOBAL);
+}
+
+%%FORWARD_DECLARATIONS%%
+
+%%TYPEDEFS%%
+
+VKAPI_ATTR PFN_vkVoidFunction VKAPI_CALL vkGetInstanceProcAddr(VkInstance instance, const char* pName) {
+    if (!pName) return NULL;
+    
+%%PROC_ADDR_COMPARES%%
+
+    load_driver();
+    static PFN_vkGetInstanceProcAddr real_func = NULL;
+    if (!real_func) real_func = (PFN_vkGetInstanceProcAddr)dlsym(handle, "%%GIPA_SYMBOL%%");
+    return real_func ? (PFN_vkVoidFunction)real_func(instance, pName) : NULL;
+}
+
+VKAPI_ATTR PFN_vkVoidFunction VKAPI_CALL vkGetDeviceProcAddr(VkDevice device, const char* pName) {
+    if (!pName) return NULL;
+    
+%%PROC_ADDR_COMPARES%%
+
+    load_driver();
+    static PFN_vkGetDeviceProcAddr real_func = NULL;
+    if (!real_func) real_func = (PFN_vkGetDeviceProcAddr)dlsym(handle, "%%GDPA_SYMBOL%%");
+    return real_func ? (PFN_vkVoidFunction)real_func(device, pName) : NULL;
+}
+
+//icd entrypoints
+VKAPI_ATTR PFN_vkVoidFunction VKAPI_CALL vk_icdGetInstanceProcAddr(VkInstance i, const char* n) { return vkGetInstanceProcAddr(i, n); }
+VKAPI_ATTR PFN_vkVoidFunction VKAPI_CALL vk_icdGetPhysicalDeviceProcAddr(VkInstance i, const char* n) { return vkGetInstanceProcAddr(i, n); }
+
+
+%%PROXY_IMPLEMENTATIONS%%
