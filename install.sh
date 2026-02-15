@@ -30,7 +30,10 @@ echo "Extracting"
 unzip -q "$ZIP_FILE" -d "$EXTRACT_DIR"
 
 echo "building layer"
-cd "$WSI_SRC/build" && ninja > /dev/null 2>&1
+mkdir -p "$WSI_SRC/build"
+cd "$WSI_SRC/build"
+cmake .. -G Ninja -DCMAKE_BUILD_TYPE=Release > /dev/null 2>&1
+ninja > /dev/null 2>&1
 cp libVkLayer_window_system_integration.so VkLayer_window_system_integration.json "$LAYER_DIR/"
 sed -i "s|\"./libVkLayer_window_system_integration.so\"|\"$LAYER_DIR/libVkLayer_window_system_integration.so\"|g" "$LAYER_DIR/VkLayer_window_system_integration.json"
 sed -i "s|\"api_version\": \"1.3.216\"|\"api_version\": \"1.4.303\"|g" "$LAYER_DIR/VkLayer_window_system_integration.json"
