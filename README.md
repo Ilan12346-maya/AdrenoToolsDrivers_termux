@@ -11,6 +11,7 @@ pkg install clang python unzip binutils vulkan-headers vulkan-tools vulkan-loade
 ```
 *Note: 
 `vulkan-loader-android` and `vulkan-wrapper-android` are used for loading the driver....  and the mesa WSI layer
+
 `mesa` is a dependency for Zink vulkan to openGL layer 
 
 #### Optional (for testing):
